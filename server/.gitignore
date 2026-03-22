@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+
+# Environment (keep .example)
+.env
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Testing
+coverage/
+
+# AI / Agent files (private)
+CLAUDE.md
+AGENTS.md

@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─── */
+:root {
+  --brand: #635BFF;
+  --brand-hover: #5147E5;
+  --brand-muted: rgba(99, 91, 255, 0.10);
+  --brand-subtle: rgba(99, 91, 255, 0.05);
+  --accent: #FF6B6B;
+
+  --surface-0: #FAFAF9;
+  --surface-1: #FFFFFF;
+  --surface-2: #F3F3F0;
+  --surface-3: #EBEBEA;
+  --border: #E2E2DD;
+  --border-hover: #D4D4CF;
+
+  --text-primary: #1A1A2E;
+  --text-secondary: #6B7094;
+  --text-tertiary: #9CA3BF;
+  --text-inverse: #FAFAF9;
+
+  --success: #06D6A0;
+  --success-muted: rgba(6, 214, 160, 0.10);
+  --error: #EF4444;
+  --error-muted: rgba(239, 68, 68, 0.10);
+  --warning: #F59E0B;
+  --warning-muted: rgba(245, 158, 11, 0.10);
+  --info: #3B82F6;
+  --info-muted: rgba(59, 130, 246, 0.10);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
+  --shadow-glow: 0 0 0 3px var(--brand-muted);
+  --shadow-error-glow: 0 0 0 3px var(--error-muted);
+
+  --sidebar-width: 240px;
+  --topbar-height: 56px;
+}
+
+/* ─── Tailwind Theme (direct values, no var indirection) ─── */
+@theme inline {
+  --color-background: #FAFAF9;
+  --color-foreground: #1A1A2E;
+  --color-brand: #635BFF;
+  --color-brand-hover: #5147E5;
+  --color-brand-muted: rgba(99, 91, 255, 0.10);
+  --color-surface-0: #FAFAF9;
+  --color-surface-1: #FFFFFF;
+  --color-surface-2: #F3F3F0;
+  --color-surface-3: #EBEBEA;
+  --color-border: #E2E2DD;
+  --color-border-hover: #D4D4CF;
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #6B7094;
+  --color-text-tertiary: #9CA3BF;
+  --color-text-inverse: #FAFAF9;
+  --color-success: #06D6A0;
+  --color-error: #EF4444;
+  --color-warning: #F59E0B;
+  --color-accent: #FF6B6B;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ─── Base ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--surface-0);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--brand);
+  color: #fff;
+}
+
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-glow);
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+/* ─── Keyframes ─── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-out-right {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(100%); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ─── Utility Animations ─── */
+.animate-fade-in      { animation: fade-in 0.4s ease-out both; }
+.animate-fade-in-down { animation: fade-in-down 0.3s ease-out both; }
+.animate-slide-in-right  { animation: slide-in-right 0.3s ease-out both; }
+.animate-slide-out-right { animation: slide-out-right 0.3s ease-out both; }
+.animate-slide-in-left   { animation: slide-in-left 0.3s ease-out both; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, var(--surface-2) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.stagger-children > * { animation: fade-in 0.4s ease-out both; }
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 300ms; }
