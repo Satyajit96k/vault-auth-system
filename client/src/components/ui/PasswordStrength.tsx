@@ -25,7 +25,7 @@ function getScore(password: string) {
   let score = 0;
   if (password.length >= 8) score++;
   criteria.forEach(({ test }) => { if (test(password)) score++; });
-  return score;
+  return Math.min(score, 4);
 }
 
 export default function PasswordStrength({ password }: PasswordStrengthProps) {
